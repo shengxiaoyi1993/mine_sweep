@@ -1,3 +1,7 @@
+//$ g++ win_proc.cpp -lgdi32
+
+
+
 #include <windows.h>
 #include <stdint.h>
 #include <tlhelp32.h>
