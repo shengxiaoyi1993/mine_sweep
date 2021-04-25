@@ -31,12 +31,12 @@ DWORD GetProcessIDByName(const char* pName)
     for (BOOL ret = Process32First(hSnapshot, &pe); ret; ret = Process32Next(hSnapshot, &pe)) {
         if (strcmp(pe.szExeFile, pName) == 0) {
             CloseHandle(hSnapshot);
-            printf("find target\n");
-            printf("%-6d %s\n", pe.th32ProcessID, pe.szExeFile);
+            // printf("find target\n");
+            // printf("%-6d %s\n", pe.th32ProcessID, pe.szExeFile);
 
             return pe.th32ProcessID;
         }
-        printf("%-6d %s\n", pe.th32ProcessID, pe.szExeFile);
+        // printf("%-6d %s\n", pe.th32ProcessID, pe.szExeFile);
     }
     CloseHandle(hSnapshot);
     return 0;
@@ -125,7 +125,6 @@ int32_t main()
 
                 GetDCBits(memDc_,(LPVOID)pdate,lpRect->right-lpRect->left,lpRect->bottom-lpRect->top,0,0);
 
-
             }
             else
             {
@@ -133,7 +132,7 @@ int32_t main()
             }
         }
     }
-    getchar();
+    // getchar();
     return S_OK;
 }
 
