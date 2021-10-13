@@ -20,7 +20,7 @@ set(LIST_PRIVATE_LIB
 
 # 位于<com_repo>/public_lib的库
 set(LIST_PUBLIC_LIB
-  cppgc
+#  cppgc
   )
 
 
@@ -106,6 +106,7 @@ target_link_libraries(
   )
 
 enable_testing()
+
 #set(GTEST_LIB gtest gtest_main)
 ## 添加测试用例
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/gtest/)
