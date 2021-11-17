@@ -12,6 +12,8 @@ set(CMAKE_AUTOUIC ON)  #编译.ui程序相关
 SET(PATH_COM_REPO "/home/sxy/Work/com_repo/scripts/com_repo_init/../../" CACHE STRING "Some user-specified option")
 SET(PATH_COMPILER_SDX "" CACHE STRING "Some user-specified option")
 
+SET(PATH_CODEUP_MINE_SWEEP "/home/sxy/Codeup/mine_sweep" CACHE STRING "Some user-specified option")
+
 
 #设置子项目，假设所有库都位于同一层级，且具有相同的文件结构
 
@@ -48,7 +50,7 @@ set(LIST_PUBLIC_LIB
   #  uio
   #  msgchannel
   #  socket_channel
-   toml
+#   toml
   )
 
 # 本地的模块
@@ -59,6 +61,16 @@ set(LIST_LOCAL_LIB
   #  json_explain
   #  http_def
   )
+
+set(LIST_CODEUP_MINESWEEP_LIB
+  #  def
+  #  basic
+  #  tool
+  #  json_explain
+  #  http_def
+  descibe_mine_sweep_distriction
+  )
+
 
 # 编译选项
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11" )
@@ -106,14 +118,21 @@ if(NOT TARGET ${MYSUBLIB})
 endif()
 ENDFOREACH(MYSUBLIB)
 
-FOREACH(MYSUBLIB ${LIST_LOCAL_LIB})
+#FOREACH(MYSUBLIB ${LIST_LOCAL_LIB})
+#if(NOT TARGET ${MYSUBLIB})
+#  message("add_subdirectory ${MYSUBLIB}")
+#  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../common/${MYSUBLIB}/ ${CMAKE_CURRENT_BINARY_DIR}/${MYSUBLIB}_${COMPILER_SUFFIX}.out/)
+#endif()
+#ENDFOREACH(MYSUBLIB)
+
+FOREACH(MYSUBLIB ${LIST_CODEUP_MINESWEEP_LIB})
 if(NOT TARGET ${MYSUBLIB})
   message("add_subdirectory ${MYSUBLIB}")
-  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../common/${MYSUBLIB}/ ${CMAKE_CURRENT_BINARY_DIR}/${MYSUBLIB}_${COMPILER_SUFFIX}.out/)
+  add_subdirectory(${PATH_CODEUP_MINE_SWEEP}/${MYSUBLIB}/ ${CMAKE_CURRENT_BINARY_DIR}/${MYSUBLIB}_${COMPILER_SUFFIX}.out/)
 endif()
 ENDFOREACH(MYSUBLIB)
 
-message("OpenCV_LIBS:"${OpenCV_LIBS})
+message("OpenCV_LIBS:" ${OpenCV_LIBS})
 
 add_executable (${PROJECT_NAME}
   ../src/main.cpp
@@ -127,6 +146,7 @@ target_link_libraries(
   ${LIST_PRIVATE_LIB}
   ${LIST_PUBLIC_LIB}
   ${LIST_LOCAL_LIB}
+  ${LIST_CODEUP_MINESWEEP_LIB}
 #  ${OpenCV_LIBS}
   )
 

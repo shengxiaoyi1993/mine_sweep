@@ -1,2 +1,0 @@
-/bin/ar qc libdescibe_mine_sweep_distriction.a  CMakeFiles/descibe_mine_sweep_distriction.dir/src/descibe_mine_sweep_distriction.cpp.o
-/bin/ranlib libdescibe_mine_sweep_distriction.a

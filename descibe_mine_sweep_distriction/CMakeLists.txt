@@ -20,6 +20,7 @@ set(LIST_PRIVATE_LIB
 
 # 位于<com_repo>/public_lib的库
 set(LIST_PUBLIC_LIB
+  macro_glog
 #  cppgc
   )
 

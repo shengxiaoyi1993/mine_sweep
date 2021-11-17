@@ -1,55 +1,22 @@
-#include <iostream>
-#include <iostream>
-#include <time.h>
-#include <sys/time.h>
-#include "toml/toml.h"
+#include "descibe_mine_sweep_distriction/descibe_mine_sweep_distriction.h"
 
 
-
-using namespace std;
-
-
-
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
+// Area tmp= TotalStatus::getOverlap(Position(0,0),Position(1,1),9,9);
+// tmp.print();
 
-  Toml *d = new Toml(argv[1]);
+// Area tmp_r= TotalStatus::getOverlap(Position(1,1),Position(0,0),9,9);
+// tmp_r.print();
+  auto array=getCombination(0,9);
+  for (auto it_l:array) {
+    for (auto it_e:it_l) {
+      std::cout<<""<<it_e<<" ";
 
-  string region;
+    }
+    std::cout<<std::endl;
+  }
 
-  cout << d->Get("region", region) << endl;
 
-  cout << "region:" << region << endl;
-
-  bool h;
-
-  d->Get("hello", h);
-
-  cout << "hello:" << h << endl;
-
-  d->Set("me", "jry");
-
-  d->Set("valid", true);
-
-  d->Set("valid2", false);
-
-  d->Set("grade", 1.234);
-
-  d->Set("num", 12);
-
-  cout << "===============" << endl;
-
-  string dtr;
-  d->Get("me", dtr);
-
-  cout << "dtr:" << dtr << endl;
-
-  cout << d->toString() << endl;
-
-  time_t tnow;
-  time(&tnow);
-
-  d->Set("last_count_time", &tnow);
-
-  d->Save("hello.toml");
+  return 0;
 }
