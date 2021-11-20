@@ -90,6 +90,11 @@ public:
   {
 
   }
+
+  bool operator <(const Position &s) const {
+      if(__h==s.__h) return __w<s.__w;
+      else return __w<s.__w;
+  }
 };
 
 class Area
@@ -117,8 +122,8 @@ public:
 
  bool has(Position v_point)
  {
-   if (v_point.__h>=__h&&v_point.__h<=__h+__height
-       &&v_point.__w>=__w&&v_point.__w<=__w+__width
+   if (v_point.__h>=__h&&v_point.__h<__h+__height
+       &&v_point.__w>=__w&&v_point.__w<__w+__width
        ) {
      return true;
    }
@@ -145,14 +150,36 @@ public:
 
 
   public:
+  TotalStatus();
+
+  /// 设置操作对象
+  /// 初始化对象
+  /// 获取对象数据
+  int setObject(const std::string &v_obj);
+
+  /// 同步对象数据
+  /// 0 已找到所有的雷
+  /// 1
+  int syncDataFromObject();
+
+  /// 随机翻开最初的方格
+  int tryOpenFirst();
+
+
+  /// 将计算后得到的结果更新
+  int syncDataToObject();
+
+
   /// 对数据进行检验，直至没有简易直接确定的情景发生
   bool update();
+
+  /// 遍历盛所有以ENUM_STATUS_UNCOVER_SAFE为中心的方格
+  /// 检验为雷的可能性
+  bool composeUpdate();
 
   /// 根据当前数据揭露所有被认定为ENUM_STATUS_UNCOVER_SAFE的单元
   bool coverAllUncoverSafe();
 
-  /// 根据实际的棋盘更新数据
-  bool updateData();
 
   int calculateAllEleInMat(int v_h,int v_w,
       int & v_uncover_mine,
@@ -171,13 +198,14 @@ public:
   /// 假设存在这种情况，某井字区域A总数确定。且存在相邻井字区域B（或者）包含的未知方格只存在于A区域中，且不重合
   /// 且满足余下的未包含未知方格数与未知雷数相同，则可以确定出若干雷或者空格，则可可知统计出
 
-  bool  StatisticalCalculateInMat(int v_h,int v_w);
+  bool  statisticalCalculateInMat(int v_h,int v_w);
 
   /// target点的CoverDoubt数量不为0，且全部落在area中
   bool isAllCoverDoubtFallIn(int target_h,int target_w,int area_h,int area_w);
 
   /// 检查点是否落在有效区域
   bool checkPoint(int v_h,int v_w);
+  bool checkPointInArea(int v_h, int v_w, Area v_area);
 
   /// 假设输入的两点已验证为有效
   /// 假设必然有交集

@@ -1,22 +1,44 @@
 #include "descibe_mine_sweep_distriction/descibe_mine_sweep_distriction.h"
-
+#include "macro_glog/macro_glog.h"
 
 int main(int argc, char *argv[])
 {
-// Area tmp= TotalStatus::getOverlap(Position(0,0),Position(1,1),9,9);
-// tmp.print();
+  TotalStatus root;
+  std::string object_game="mine.exe";
+  root.setObject(object_game);
+  root.tryOpenFirst();
 
-// Area tmp_r= TotalStatus::getOverlap(Position(1,1),Position(0,0),9,9);
-// tmp_r.print();
-  auto array=getCombination(0,9);
-  for (auto it_l:array) {
-    for (auto it_e:it_l) {
-      std::cout<<""<<it_e<<" ";
 
+  while (root.syncDataFromObject() != 0) {
+    if (root.update()) {
+      goto update;
     }
-    std::cout<<std::endl;
+
+    if (root.composeUpdate()) {
+      goto update;
+    }
+
+    MACRO_GLOG_INFO("All update finish ,but cannot find all mine ");
+
+    update:
+    root.syncDataToObject();
+
   }
+//  root.syncDataFromObject();
+
+
+
+
+
+
+
+
+
+
+
 
 
   return 0;
+
 }
+
