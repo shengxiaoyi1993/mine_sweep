@@ -157,7 +157,7 @@ public:
   /// 获取对象数据
   int setObject(const std::string &v_obj);
 
-  /// 同步对象数据
+  /// 同步对象数据,记录实际区域的状态
   /// 0 已找到所有的雷
   /// 1
   int syncDataFromObject();

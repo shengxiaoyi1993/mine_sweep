@@ -64,6 +64,21 @@ bool TotalStatus::update()
   return false;
 }
 
+int TotalStatus::setObject(const std::string &v_obj)
+{
+  /// getRect
+  /// getStatus // ifstart time remainMine
+  /// verifySquare
+
+}
+
+int TotalStatus::tryOpenFirst()
+{
+  /// 随机点一个方格
+}
+
+
+
 /// 统计一个格子周围1格，各种类型的格子数量
 int TotalStatus::calculateAllEleInMat(int v_h,int v_w,
                                       int & v_uncover_mine,

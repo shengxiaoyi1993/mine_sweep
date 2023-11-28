@@ -24,19 +24,9 @@ int main(int argc, char *argv[])
     root.syncDataToObject();
 
   }
+
+
 //  root.syncDataFromObject();
-
-
-
-
-
-
-
-
-
-
-
-
 
   return 0;
 
